@@ -10,6 +10,8 @@ This project provides practical examples and strategies for:
 - Reducing costs while maintaining monitoring effectiveness
 - Implementing best practices for Prometheus metric management
 
+To complete the experiment in this blog, you need to have the minimum IAM permissions as listed in [iam-policy.json](./iam-policy.json)
+
 ## Prerequisites
 
 - An AWS account
