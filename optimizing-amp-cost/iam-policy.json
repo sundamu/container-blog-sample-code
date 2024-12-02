@@ -1,0 +1,268 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "ec2:DescribeSubnets",
+                "ec2:DescribeVpcs",
+                "ec2:DescribeNetworkInterfaces",
+                "ec2:DescribeRouteTables",
+                "ec2:DescribeSecurityGroups",
+                "ec2:DescribeAvailabilityZones",
+                "ec2:DescribeLaunchTemplateVersions",
+                "ec2:DescribeLaunchTemplates"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "ec2:CreateSecurityGroup",
+                "ec2:DeleteSecurityGroup",
+                "ec2:AuthorizeSecurityGroupIngress",
+                "ec2:RevokeSecurityGroupIngress",
+                "ec2:CreateLaunchTemplate",
+                "ec2:DeleteLaunchTemplate",
+                "ec2:CreateLaunchTemplateVersion"
+            ],
+            "Resource": [
+                "arn:aws:ec2:*:*:launch-template/*",
+                "arn:aws:ec2:*:*:launch-template-version/*",
+                "arn:aws:ec2:*:*:security-group/*"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "ec2:DescribeInstanceTypeOfferings"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "ec2:RunInstances",
+                "ec2:StartInstances",
+                "ec2:StopInstances",
+                "ec2:TerminateInstances",
+                "ec2:CreateTags",
+                "ec2:DeleteTags"
+            ],
+            "Resource": [
+                "arn:aws:ec2:*:*:launch-template/*",
+                "arn:aws:ec2:*:*:subnet/*",
+                "arn:aws:ec2:*:*:security-group/*",
+                "arn:aws:ec2:*:*:key-pair/*",
+                "arn:aws:ec2:*:*:image/*",
+                "arn:aws:ec2:*:*:network-interface/*",
+                "arn:aws:ec2:*:*:volume/*",
+                "arn:aws:ec2:*:*:instance/*"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "autoscaling:CreateAutoScalingGroup",
+                "autoscaling:UpdateAutoScalingGroup",
+                "autoscaling:DeleteAutoScalingGroup",
+                "autoscaling:DescribeAutoScalingGroups",
+                "autoscaling:DescribeLaunchConfigurations",
+                "autoscaling:DescribeScalingActivities",
+                "autoscaling:CreateLaunchConfiguration",
+                "autoscaling:DeleteLaunchConfiguration"
+            ],
+            "Resource": [
+                "arn:aws:autoscaling:*:*:autoScalingGroup:*:autoScalingGroupName/*",
+                "arn:aws:autoscaling:*:*:launchConfiguration:*:launchConfigurationName/*",
+                "arn:aws:autoscaling:*:*:launchConfiguration:*:launchConfigurationName/*:*"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "aps:CreateRuleGroupsNamespace",
+                "aps:DeleteRuleGroupsNamespace",
+                "aps:DescribeRuleGroupsNamespace",
+                "aps:ListTagsForResource"
+            ],
+            "Resource": "arn:aws:aps:*:*:rulegroupsnamespace/*/*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "aps:CreateWorkspace",
+                "aps:DeleteWorkspace",
+                "aps:DescribeLoggingConfiguration",
+                "aps:DescribeWorkspace",
+                "aps:ListRuleGroupsNamespaces",
+                "aps:ListTagsForResource",
+                "aps:QueryMetrics",
+                "aps:PutRuleGroupsNamespace",
+                "aps:ListWorkspaces",
+                "aps:TagResource",
+                "aps:GetLabels"
+            ],
+            "Resource": [
+                "arn:aws:aps:*:*:/workspaces",
+                "arn:aws:aps:*:*:/workspaces/*",
+                "arn:aws:aps:*:*:workspace/*"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "cloudformation:CreateStack",
+                "cloudformation:DeleteStack",
+                "cloudformation:DescribeStackEvents",
+                "cloudformation:DescribeStackResources",
+                "cloudformation:TagResource",
+                "cloudformation:GetTemplate",
+                "cloudformation:DescribeStacks",
+                "cloudformation:ListStacks"
+            ],
+            "Resource": [
+                "arn:aws:cloudformation:*:*:stack/*/*",
+                "arn:aws:cloudformation:*:*:stack/*/*/*"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "eks:DescribeCluster",
+                "eks:CreateAddon",
+                "eks:TagResource",
+                "eks:DescribeAddon",
+                "eks:UpdateAddon",
+                "eks:DeleteAddon",
+                "eks:CreateAccessEntry",
+                "eks:AssociateAccessPolicy",
+                "eks:ListAccessEntries",
+                "eks:CreateNodegroup",
+                "eks:DescribeNodegroup",
+                "eks:ListNodegroups",
+                "eks:UpdateNodegroupConfig",
+                "eks:DeleteNodegroup"
+            ],
+            "Resource": [
+                "arn:aws:eks:*:*:cluster/*",
+                "arn:aws:eks:*:*:access-entry/*/*/*/*/*",
+                "arn:aws:eks:*:*:addon/*/*/*",
+                "arn:aws:eks:*:*:addonversion/*/*",
+                "arn:aws:eks::aws:cluster-access-policy/*",
+                "arn:aws:eks:*:*:nodegroup/*/*/*",
+                "arn:aws:eks:*:*:nodegroupconfig/*/*"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "eks:DescribeAddonVersions"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "grafana:CreateWorkspaceServiceAccount",
+                "grafana:CreateWorkspaceServiceAccountToken",
+                "grafana:DeleteWorkspaceServiceAccount",
+                "grafana:DescribeWorkspace",
+                "grafana:ListWorkspaceServiceAccounts"
+            ],
+            "Resource": [
+                "arn:aws:grafana:*:*:/workspaces/*",
+                "arn:aws:grafana:*:*:/workspaces/*/serviceaccounts/*",
+                "arn:aws:grafana:*:*:/workspaces/*/serviceaccounts/*/tokens/*"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": "iam:CreateServiceLinkedRole",
+            "Resource": "arn:aws:iam::*:role/aws-service-role/prometheus.amazonaws.com/*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": "iam:GetRole",
+            "Resource": "arn:aws:iam::*:role/aws-service-role/eks-nodegroup.amazonaws.com/AWSServiceRoleForAmazonEKSNodegroup"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "iam:CreateRole",
+                "iam:GetRole",
+                "iam:ListAttachedRolePolicies",
+                "iam:AttachRolePolicy",
+                "iam:DetachRolePolicy",
+                "iam:DeleteRole",
+                "iam:GetRolePolicy",
+                "iam:PutRolePolicy",
+                "iam:DeleteRolePolicy",
+                "iam:PassRole",
+                "iam:CreatePolicy",
+                "iam:GetPolicy",
+                "iam:TagPolicy",
+                "iam:GetPolicyVersion",
+                "iam:ListPolicyVersions",
+                "iam:TagRole",
+                "iam:DeletePolicy",
+                "iam:ListRolePolicies",
+                "iam:ListInstanceProfilesForRole"
+            ],
+            "Resource": [
+                "arn:aws:iam::*:role/*-adot-collector-kubeprometheus-irsa",
+                "arn:aws:iam::*:role/*-cert-manager-irsa",
+                "arn:aws:iam::*:role/*-cluster-secretstore-sa-irsa",
+                "arn:aws:iam::*:role/*-external-secrets-sa-irsa",
+                "arn:aws:iam::*:role/*-eksctl-amp-nodegroup-app-NodeInstanceRole",
+                "arn:aws:iam::*:policy/*-cert-manager-irsa",
+                "arn:aws:iam::*:policy/cluster-secretstore-sa*",
+                "arn:aws:iam::*:policy/*-external-secrets-irsa",
+                "arn:aws:iam::*:role/eksctl*"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "kms:CreateKey",
+                "kms:CreateAlias",
+                "kms:ListAliases"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "kms:Decrypt",
+                "kms:DescribeKey",
+                "kms:EnableKeyRotation",
+                "kms:Encrypt",
+                "kms:GetKeyPolicy",
+                "kms:GetKeyRotationStatus",
+                "kms:ListResourceTags",
+                "kms:PutKeyPolicy",
+                "kms:ScheduleKeyDeletion",
+                "kms:TagResource"
+            ],
+            "Resource": "arn:aws:kms:*:*:key/*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "ssm:DescribeParameters"
+            ],
+            "Resource": "arn:aws:ssm:*:*:*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "ssm:DeleteParameter",
+                "ssm:GetParameter",
+                "ssm:GetParameters",
+                "ssm:PutParameter",
+                "ssm:ListTagsForResource"
+            ],
+            "Resource": "arn:aws:ssm:*:*:parameter/*"
+        }
+    ]
+}
