@@ -1,6 +1,12 @@
 #!/bin/bash
 
-for i in {1..60}
+if [ $# -eq 0 ]
+then
+    echo "Please provide number of deployments to be deleted."
+    exit 1
+fi
+
+for i in $(seq 1 $1)
 do
   export N=$i
   envsubst < nginx-template.yaml > nginx.yaml
