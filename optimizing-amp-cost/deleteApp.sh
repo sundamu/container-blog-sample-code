@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [ $# -eq 0 ]
+if [ $# -ne 1 ]
 then
     echo "Please provide number of deployments to be deleted."
     exit 1
