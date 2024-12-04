@@ -9,7 +9,7 @@
 在这一步中，我们将利用 [AWS observability accelerator](https://github.com/aws-observability/terraform-aws-observability-accelerator) 构建一个健壮的可观测性系统。这个设置将为使用 AMP 和 AMG 监控您的 EKS 集群提供一个坚实的基础。
 
 ``` bash
-cd <your workding dir>
+cd <your working dir>
 git clone https://github.com/aws-observability/terraform-aws-observability-accelerator.git
 cd terraform-aws-observability-accelerator/examples/existing-cluster-with-base-and-infra
 terraform init
@@ -78,7 +78,7 @@ terraform apply
 
 **注意：** 如果您已经为 VPC CNI EKS 插件配置了 [advanced configuration](https://aws.amazon.com/blogs/containers/amazon-eks-add-ons-advanced-configuration/)，请合并配置而不是替换它。
 
-```
+``` bash
 aws eks update-addon \
   --addon-name vpc-cni \
   --cluster-name <your cluster name> \
@@ -89,7 +89,7 @@ aws eks update-addon \
 
 为示例应用程序创建一个新的 EKS 节点组。
 
-```
+``` bash
 eksctl create nodegroup \
   --cluster <your cluster name> \
   --name app \
@@ -104,8 +104,8 @@ eksctl create nodegroup \
 
 部署示例应用程序。
 
-```
-cd <your workding dir>
+``` bash
+cd <your working dir>
 git clone https://github.com/aws-samples/container-blog-sample-code.git
 cd container-blog-sample-code/optimizing-amp-cost
 
