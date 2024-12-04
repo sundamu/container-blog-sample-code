@@ -8,7 +8,7 @@ fi
 
 kubectl create namespace sample-nginx
 
-for i in $(seq 1 $1)
+for i in $(seq 1 "$1")
 do
   export N=$i
   envsubst < nginx-template.yaml > nginx.yaml

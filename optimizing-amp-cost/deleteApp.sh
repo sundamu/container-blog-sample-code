@@ -6,7 +6,7 @@ then
     exit 1
 fi
 
-for i in $(seq 1 $1)
+for i in $(seq 1 "$1")
 do
   export N=$i
   envsubst < nginx-template.yaml > nginx.yaml
