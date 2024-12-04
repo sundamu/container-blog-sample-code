@@ -105,7 +105,7 @@ Warning: Metric kube_certificatesigningrequest_created not found!
 
 ![](./images/figure%207.jpg)
 
-*<center>图 7：extractUnusedMetrics.py 的输出</center>*
+ *<p align="center">图 7：extractUnusedMetrics.py 的输出</p>*
 
 请忽略 job `Unknown` 的指标。这些指标并非由采集器摄取到 AMP，而是由 Prometheus Recording Rules 生成的。Recording Rules 可以预先计算频繁使用或计算复杂的查询表达式并保存为新的指标，达到优化查询性能和资源使用的目的。
 
@@ -124,7 +124,7 @@ python3 validateMetrics.py ${TF_VAR_aws_region} ${AMP_WP_ID} before
 
 ![](./images/figure%208.jpg)
 
-*<center>图 8： validateMetrics.py 的输出</center>*
+ *<p align="center">图 8： validateMetrics.py 的输出</p>*
 
 在本实验中，我们将通过 [Prometheus metric relabeling](https://prometheus.io/docs/prometheus/latest/configuration/configuration/#metric_relabel_configs) 来删除未使用的指标。在以下的配置中，我们通过正则表达式匹配指标名称，并指定 action 为 drop。采集器在爬取指标样本之后，在往 AMP 发送数据之前，会丢弃匹配到规则的指标样本。
 
@@ -169,7 +169,7 @@ cd <your working dir>/terraform-aws-observability-accelerator/modules/eks-monito
 
 ![](./images/figure%209.jpg)
 
-*<center>图 9：Prometheus 配置样例</center>*
+ *<p align="center">图 9：Prometheus 配置样例</p>*
 
 更新 otel-config 的 helm chart 版本。
 
@@ -219,19 +219,19 @@ adot-collector-7d94d44f8b-mf4jj   1/1     Running   0          103s
 
 ![](./images/figure%2010.jpg)
 
-*<center>图 10：优化后的 Prometheus active series 数量</center>*
+ *<p align="center">图 10：优化后的 Prometheus active series 数量</p>*
 
 我们也可以在 CloudWatch 中检查 `activeseries` 指标。但它只会在指标数据消失 2 小时后才更新。
 
 ![](./images/figure%2011.jpg)
 
-*<center>图 11：CloudWatch activeseries 指标</center>*
+ *<p align="center">图 11：CloudWatch activeseries 指标</p>*
 
 验证所有 Grafana 仪表板与之前一样正常工作。
 
 ![](./images/figure%2012.jpg)
 
-*<center>图 12：优化后的 Grafana 仪表板</center>*
+ *<p align="center">图 12：优化后的 Grafana 仪表板</p>*
 
 运行一个脚本来验证在 Prometheus 规则中使用的指标是否有任何缺失。
 
@@ -242,4 +242,4 @@ python3 validateMetrics.py ${TF_VAR_aws_region} ${AMP_WP_ID} after
 
 ![](./images/figure%2013.jpg)
 
-*<center>图 13：validateMetrics.py 的输出</center>*
+ *<p align="center">图 13：validateMetrics.py 的输出</p>*

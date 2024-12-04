@@ -60,7 +60,7 @@ terraform apply
 
 ![](./images/figure%202.jpg)
 
- *<center>图 2：Grafana仪表板</center>*
+ *<p align="center">图 2：Grafana仪表板</p>*
 
  ## 步骤 1.2: 部署示例应用程序
 
@@ -118,12 +118,12 @@ kubectl -n sample-nginx get pod
 
 ![](./images/figure%203.jpg)
 
-*<center>图 3：工作负载监控图表</center>*
+ *<p align="center">图 3：工作负载监控图表</p>*
 
 我们可以通过 PromQL 语句 `count({__name__=~".+"})` 从 Grafana "Explore" 页面查询我们集群的 Prometheus [active series](https://community.grafana.com/t/what-is-and-active-series/85194)，该指标反映了当前采集器发送到 AMP 的指标样本数量。这个查询比较耗时，请选择一个较短的时间范围 (例如 **5 分钟**) 以节省时间。
 
 ![](./images/figure%204.jpg)
 
-*<center>图 4：Prometheus active series 数量</center>*
+ *<p align="center">图 4：Prometheus active series 数量</p>*
 
-在我们的实验中，我们在 UTC 时间 10 月 18 日 13：00 开始摄取指标，然后在 UTC 时间 10 月 21 日 02：00 检查费用。这个时间范围允许我们收集足够的数据来分析 AMP 成本并识别优化机会。
+
