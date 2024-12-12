@@ -42,7 +42,7 @@ GRAFANA_API_TOKEN=$(aws grafana create-workspace-service-account-token \
 export TF_VAR_managed_grafana_workspace_id=<Your AMG workspace ID>
 export TF_VAR_aws_region=<Your region>
 
-cd <your workding dir>/container-blog-sample-code/optimizing-amp-cost
+cd <your working dir>/container-blog-sample-code/optimizing-amp-cost
 mimirtool analyze grafana \
   --address=https://${TF_VAR_managed_grafana_workspace_id}.grafana-workspace.${TF_VAR_aws_region}.amazonaws.com \
   --key="${GRAFANA_API_TOKEN}" \
@@ -54,7 +54,7 @@ mimirtool analyze grafana \
 ``` bash
 export AMP_WP_ID=<Your AMP workspace ID>
 
-# Download promehteus rule files
+# Download prometheus rule files
 export namespaces=$(aws amp list-rule-groups-namespaces \
   --workspace-id ${AMP_WP_ID} \
   --query 'ruleGroupsNamespaces[*].name' \
