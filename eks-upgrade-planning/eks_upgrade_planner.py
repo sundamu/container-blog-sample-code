@@ -199,7 +199,7 @@ def invoke_llm(
             # Claude模型的基本请求体
             return {
                 "anthropic_version": "bedrock-2023-05-31",
-                "max_tokens": 8191,
+                "max_tokens": 8192,
                 "messages": messages,
                 "temperature": temperature
             }
@@ -582,7 +582,7 @@ def process_version_changes(client, docs: Dict[str, str], current_version: str, 
     user_prompt = f"""当前EKS集群版本：{current_version}
 目标EKS集群版本：{target_version}"""
 
-    logger.info("正在分析特点版本变更的影响。。。")
+    logger.info("正在分析特定版本变更的影响。。。")
     
     return invoke_llm(
         client=client,
@@ -874,6 +874,7 @@ Kubernetes 控制面升级成功后无法回退；
 def process_addon_upgrade(
     client,
     eks_addon_list: List[Dict],
+    eks_addon_upgrade_info: List[Dict],
     opensource_addons: List[Dict],
     self_managed_core_addons: List[Dict],
     current_version: str,
@@ -886,6 +887,7 @@ def process_addon_upgrade(
     Args:
         client: Bedrock客户端
         eks_addon_list: EKS插件列表
+        eks_addon_upgrade_info: EKS插件兼容列表
         opensource_addons: 开源插件列表
         self_managed_core_addons: 自管理核心插件列表
         current_version: 当前版本
@@ -899,10 +901,11 @@ def process_addon_upgrade(
 
 <要求>
 - Kube-proxy需要与目标控制面版本一致
-- 其它addons建议更新版本，但不是强制要求
+- 根据EKS addon兼容列表提供EKS插件升级建议
 - 针对EKS addons，提供兼容版本的AWS CLI检查命令
+- 针对Opensource addon信息，如果没有足够的信息用于提供升级建议，仅列出版本信息
 - 请谨慎思考，不要提供错误的建议版本
-- 请提供参考资料的原文链接
+- 请提供参考资料的原文链接,开源插件提供Github Release Note文档链接
 - 除了专业名称、代码、命令行之外，请使用简体中文输出
 </要求>
 
@@ -913,6 +916,7 @@ def process_addon_upgrade(
 """
     
     user_prompt = f"""EKS addon 信息：{json.dumps(eks_addon_list, indent=2, cls=DateTimeEncoder)}
+EKS addon 兼容列表：{json.dumps(eks_addon_upgrade_info, indent=2, cls=DateTimeEncoder)}
 Opensource addon 信息：{json.dumps(opensource_addons, indent=2, cls=DateTimeEncoder)}
 自管理核心addon信息：{json.dumps(self_managed_core_addons, indent=2, cls=DateTimeEncoder)}
 当前集群版本：{current_version}
@@ -1261,6 +1265,7 @@ def generate_upgrade_plan(
         addon_upgrade = process_addon_upgrade(
             bedrock_client,
             installed_addons,
+            addon_upgrade_info,
             opensource_addons,
             core_components,
             current_version,

@@ -266,7 +266,8 @@ def get_addon_upgrade_info(cluster_name, region, current_version, target_version
                 
                 # Extract versions
                 version_list = [
-                    v['addonVersion'].split('-')[0]
+                    #v['addonVersion'].split('-')[0]
+                    v['addonVersion']
                     for v in response['addons'][0].get('addonVersions', [])
                     if v.get('compatibilities')
                 ]
